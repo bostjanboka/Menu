@@ -11,8 +11,10 @@ public class MenuScript : MonoBehaviour {
 
     List<GameObject> stack;
 
+    AudioListener audio;
     void Awake()
     {
+        audio = GameObject.FindObjectOfType<AudioListener>();
         for(int i=0; i < pages.Length; i++)
         {
             pages[i] = Instantiate(pages[i]) as GameObject;
@@ -75,5 +77,16 @@ public class MenuScript : MonoBehaviour {
             areYouSureYouWantToLeavePage.SetActive(true);
         }
         
+    }
+
+    public void openScene(string name)
+    {
+        Application.LoadLevel(name);
+    }
+
+    public void muteSound()
+    {
+        if(audio != null)
+            audio.enabled = false;
     }
 }
